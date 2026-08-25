@@ -800,7 +800,8 @@
   // =========================================================
   const grid = document.getElementById("productGrid");
   grid.innerHTML = products.map((p, i) => `
-    <button type="button" data-open-id="${p.id}" class="product-card text-left group bg-paper rounded-sm overflow-hidden border border-charcoal/10 hover-lift fade-up" style="transition-delay:${(i % 4) * 0.05}s">
+   
+    <button type="button" data-open-id="${p.id}" ${p.outOfStock ? "disabled" : ""} class="product-card ${p.outOfStock ? "out-of-stock" : ""} text-left group bg-paper rounded-sm overflow-hidden border border-charcoal/10 hover-lift fade-up"text-left group bg-paper rounded-sm overflow-hidden border border-charcoal/10 hover-lift fade-up" style="transition-delay:${(i % 4) * 0.05}s">
       <div class="relative aspect-[4/5] overflow-hidden">
         <img src="${p.images[0]}" alt="${p.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
         <span class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-paper/95 border border-charcoal/15 text-terracotta text-[8px] sm:text-[10px] uppercase tracking-[0.15em] px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full">${p.style}</span>
