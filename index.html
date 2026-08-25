@@ -799,25 +799,48 @@
   // Render product grid (2 cols mobile / 3-4 desktop)
   // =========================================================
   const grid = document.getElementById("productGrid");
-  grid.innerHTML = products.map((p, i) => `
-   
-    <button type="button" data-open-id="${p.id}" ${p.outOfStock ? "disabled" : ""} class="product-card ${p.outOfStock ? "out-of-stock" : ""} text-left group bg-paper rounded-sm overflow-hidden border border-charcoal/10 hover-lift fade-up"text-left group bg-paper rounded-sm overflow-hidden border border-charcoal/10 hover-lift fade-up" style="transition-delay:${(i % 4) * 0.05}s">
-      <div class="relative aspect-[4/5] overflow-hidden">${p.outOfStock ? `<span class="absolute top-2 left-2 z-10 bg-red-600 text-white text-xs px-3 py-1 rounded-full">OUT OF STOCK</span>` : ""}
-        <img src="${p.images[0]}" alt="${p.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-        <span class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-paper/95 border border-charcoal/15 text-terracotta text-[8px] sm:text-[10px] uppercase tracking-[0.15em] px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full">${p.style}</span>
-        <span class="absolute top-2 right-2 sm:top-3 sm:right-3 bg-charcoal/85 text-beige text-[7px] sm:text-[9px] uppercase tracking-[0.12em] px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full">Handmade</span>
-      </div>
-      <div class="p-3 sm:p-5">
-        <p class="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-charcoal/45 mb-0.5 sm:mb-1">${p.category}</p>
-        <h3 class="font-display text-sm sm:text-lg leading-snug mb-1.5 sm:mb-2">${p.name}</h3>
-        <div class="flex items-center justify-between mt-2 sm:mt-3">
-          <span class="font-body font-medium text-terracotta text-sm sm:text-lg">${inr(p.price)}</span>
-          <span class="hidden sm:inline-block bg-charcoal text-paper text-xs uppercase tracking-[0.1em] px-4 py-2.5 rounded-sm group-hover:bg-terracotta transition-colors">View</span>
-        </div>
-      </div>
-    </button>
-  `).join("");
+grid.innerHTML = products.map((p, i) => `
+  <button type="button"
+    data-open-id="${p.id}"
+    ${p.outOfStock ? "disabled" : ""}
+    class="product-card ${p.outOfStock ? "out-of-stock" : ""} text-left group bg-paper rounded-sm overflow-hidden border border-charcoal/10 hover-lift fade-up"
+    style="transition-delay:${(i % 4) * 0.05}s">
 
+    <div class="relative aspect-[4/5] overflow-hidden">
+      ${p.outOfStock ? `<span class="absolute top-2 left-2 z-10 bg-red-600 text-white text-xs px-3 py-1 rounded-full">OUT OF STOCK</span>` : ""}
+
+      <img src="${p.images[0]}" alt="${p.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+
+      <span class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-paper/95 border border-charcoal/15 text-terracotta text-[8px] sm:text-[10px] uppercase tracking-[0.15em] px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full">
+        ${p.style}
+      </span>
+
+      <span class="absolute top-2 right-2 sm:top-3 sm:right-3 bg-charcoal/85 text-beige text-[7px] sm:text-[9px] uppercase tracking-[0.12em] px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full">
+        Handmade
+      </span>
+    </div>
+
+    <div class="p-3 sm:p-5">
+      <p class="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-charcoal/45 mb-0.5 sm:mb-1">
+        ${p.category}
+      </p>
+
+      <h3 class="font-display text-sm sm:text-lg leading-snug mb-1.5 sm:mb-2">
+        ${p.name}
+      </h3>
+
+      <div class="flex items-center justify-between mt-2 sm:mt-3">
+        <span class="font-body font-medium text-terracotta text-sm sm:text-lg">
+          ${inr(p.price)}
+        </span>
+
+        <span class="hidden sm:inline-block bg-charcoal text-paper text-xs uppercase tracking-[0.1em] px-4 py-2.5 rounded-sm group-hover:bg-terracotta transition-colors">
+          View
+        </span>
+      </div>
+    </div>
+  </button>
+`).join("");
   // =========================================================
   // Product Modal
   // =========================================================
