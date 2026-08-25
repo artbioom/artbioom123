@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Art Bloom — Tradition Meets Modernity</title>
+<meta name="description" content="100% hand-made, hand-crafted Indian folk art printed on contemporary sarees, kurtas, shirts and tees." />
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          paper:      '#FBF7EF',
+          beige:      '#F0E6D3',
+          'beige-dk': '#E4D5B7',
+          terracotta: '#B4552F',
+          'terracotta-dk': '#8F4224',
+          charcoal:   '#2A2420',
+          indigo:     '#2F3B57',
+          turmeric:   '#C8901F',
+          whatsapp:   '#25D366',
+        },
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          body: ['Jost', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background-color: #FBF7EF; }
+  ::selection { background: #B4552F; color: #FBF7EF; }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid #B4552F;
+    outline-offset: 3px;
+  }
+
+  .block-print-strip {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='36' viewBox='0 0 72 36'%3E%3Cg fill='none' stroke='%232A2420' stroke-width='1.4' opacity='0.55'%3E%3Cpath d='M6 28c4-10 10-16 12-22'/%3E%3Ccircle cx='19' cy='6' r='2.4'/%3E%3Cpath d='M42 30c4-9 9-15 11-23'/%3E%3Ccircle cx='54' cy='7' r='2.4'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-size: 72px 36px;
+  }
+
+  .grain-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-track { animation: marquee 26s linear infinite; }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  .stamp-edge { clip-path: polygon(0 0,100% 0,100% 92%,97% 100%,92% 90%,88% 100%,84% 90%,80% 100%,76% 90%,72% 100%,68% 90%,64% 100%,60% 90%,56% 100%,52% 90%,48% 100%,44% 90%,40% 100%,36% 90%,32% 100%,28% 90%,24% 100%,20% 90%,16% 100%,12% 90%,8% 100%,4% 90%,0 100%); }
+
+  .hover-lift { transition: transform .35s ease, box-shadow .35s ease; }
+  .hover-lift:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -18px rgba(42,36,32,0.35); }
+
+  .cart-bump { animation: bump .35s ease; }
+  @keyframes bump { 0%{transform:scale(1)} 40%{transform:scale(1.35)} 100%{transform:scale(1)} }
+
+  .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+  .fade-up.in-view { opacity: 1; transform: translateY(0); }
+
+  .stitch-underline { position: relative; }
+  .stitch-underline::after {
+    content: ''; position:absolute; left:0; right:0; bottom:-8px; height:6px;
+    background-image: radial-gradient(circle, #B4552F 1.4px, transparent 1.6px);
+    background-size: 10px 6px; background-repeat: repeat-x; opacity:.7;
+  }
+
+  .drawer-panel { transition: transform .4s cubic-bezier(.4,0,.2,1); }
+  .overlay-fade { transition: opacity .35s ease; }
+  .modal-pop { transition: transform .3s cubic-bezier(.34,1.56,.64,1), opacity .3s ease; }
+
+  input[type="radio"].pay-radio:checked + label {
+    border-color: #B4552F;
+    background-color: rgba(180,85,47,0.06);
+  }
+  input[type="radio"].pay-radio:checked + label .radio-dot { background-color: #B4552F; }
+
+  .qty-btn { transition: background-color .2s ease; }
+
+  .thumb-active { border-color: #B4552F !important; opacity: 1 !important; }
+  .gallery-fade { transition: opacity .25s ease; }
+
+  /* scrollbar tidy for modal on small screens */
+  .modal-scroll::-webkit-scrollbar { width: 6px; }
+  .modal-scroll::-webkit-scrollbar-thumb { background: rgba(42,36,32,0.15); border-radius: 3px; }
+</style>
+</head>
+
+<body class="font-body text-charcoal antialiased">
+
+<!-- ============ ANNOUNCEMENT BAR ============ -->
+<div class="bg-charcoal text-beige text-[10px] sm:text-xs tracking-[0.2em] uppercase text-center py-2 px-4">
+  ✦ 100% Hand-Made &amp; Hand-Crafted · Free shipping over ₹2,999 ✦
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-charcoal/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8">
+    <div class="flex items-center justify-between h-[72px] sm:h-20">
+
+      <a href="#top" class="flex items-center gap-2 group">
+        <svg width="30" height="30" viewBox="0 0 34 34" fill="none" class="shrink-0 sm:w-[34px] sm:h-[34px]">
+          <circle cx="17" cy="17" r="16" stroke="#B4552F" stroke-width="1.3"/>
+          <path d="M17 7c3 4 6 5 9 5-1 4-3 7-9 15-6-8-8-11-9-15 3 0 6-1 9-5Z" fill="#B4552F" class="transition-transform duration-500 group-hover:rotate-[8deg]" style="transform-origin:17px 17px"/>
+        </svg>
+        <span class="font-display text-xl sm:text-2xl tracking-tight">Art <span class="italic text-terracotta">Bloom</span></span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-10 font-body text-[13px] tracking-[0.14em] uppercase">
+        <a href="#collections" class="hover:text-terracotta transition-colors">Collections</a>
+        <a href="#bestsellers" class="hover:text-terracotta transition-colors">Best Sellers</a>
+        <a href="#handmade" class="hover:text-terracotta transition-colors">Handmade Promise</a>
+        <a href="#story" class="hover:text-terracotta transition-colors">Our Story</a>
+        <a href="#footer" class="hover:text-terracotta transition-colors">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3 sm:gap-5">
+        <button aria-label="Search" class="hidden sm:block hover:text-terracotta transition-colors">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+        <button aria-label="Open cart" id="cartBtn" class="relative hover:text-terracotta transition-colors">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 2H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
+          <span id="cartCount" class="absolute -top-2 -right-2 bg-terracotta text-paper text-[10px] font-semibold min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center">0</span>
+        </button>
+        <button id="menuBtn" aria-label="Open menu" aria-expanded="false" class="lg:hidden flex flex-col justify-center gap-[5px] w-6 h-6">
+          <span class="menu-bar block h-[1.5px] w-full bg-charcoal transition-all"></span>
+          <span class="menu-bar block h-[1.5px] w-full bg-charcoal transition-all"></span>
+          <span class="menu-bar block h-[1.5px] w-3/4 bg-charcoal self-end transition-all"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobileMenu" class="lg:hidden max-h-0 overflow-hidden transition-[max-height] duration-400 ease-in-out bg-paper border-t border-charcoal/10">
+    <nav class="flex flex-col px-6 py-6 gap-5 font-display text-xl">
+      <a href="#collections" class="mobile-link">Collections</a>
+      <a href="#bestsellers" class="mobile-link">Best Sellers</a>
+      <a href="#handmade" class="mobile-link">Handmade Promise</a>
+      <a href="#story" class="mobile-link">Our Story</a>
+      <a href="#footer" class="mobile-link">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="relative overflow-hidden bg-beige stamp-edge pb-14 sm:pb-24">
+  <div class="grain-overlay absolute inset-0 pointer-events-none"></div>
+
+  <svg class="absolute -right-16 -top-16 opacity-[0.14] rotate-12 hidden md:block" width="420" height="420" viewBox="0 0 200 200" fill="none">
+    <path d="M100 10c18 24 36 30 54 30-6 24-18 42-54 90-36-48-48-66-54-90 18 0 36-6 54-30Z" stroke="#2A2420" stroke-width="1.2"/>
+    <circle cx="100" cy="100" r="80" stroke="#2A2420" stroke-width="1"/>
+  </svg>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 pt-10 sm:pt-20 relative grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+    <div class="fade-up">
+      <p class="uppercase tracking-[0.25em] text-[11px] sm:text-sm text-terracotta mb-4 sm:mb-5 flex items-center gap-3">
+        <span class="w-8 h-px bg-terracotta inline-block"></span> 100% HANDMADE NO MASS PRODUCTION
+      </p>
+      <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl leading-[1.05] text-charcoal">
+        Tradition <span class="italic text-terracotta">meets</span><br class="hidden sm:block"> Modernity
+      </h1>
+      <p class="mt-5 sm:mt-6 text-base sm:text-lg text-charcoal/70 max-w-md leading-relaxed">
+        Every Art Bloom piece is handmade. inspired by traditional art and mordern atr from warli,madhubani,patta chitra,kalam kari and flowral disgin-then transformed into Sarees,Kurtas and Shirts.  
+      </p>
+      <div class="mt-8 sm:mt-9 flex flex-wrap items-center gap-5">
+        <a href="#bestsellers" class="bg-terracotta text-paper px-7 sm:px-8 py-3.5 sm:py-4 font-body text-sm tracking-[0.12em] uppercase hover:bg-terracotta-dk transition-colors rounded-sm">
+          Shop Now
+        </a>
+        <a href="#handmade" class="font-display italic text-lg text-charcoal stitch-underline">
+          See the handmade promise
+        </a>
+      </div>
+
+      <div class="mt-10 sm:mt-14 flex items-center gap-5 sm:gap-8 text-[11px] sm:text-xs uppercase tracking-widest text-charcoal/60">
+        <div><span class="block font-display text-xl sm:text-2xl not-italic text-charcoal">40+</span>Artisan partners</div>
+        <div class="w-px h-8 bg-charcoal/15"></div>
+        <div><span class="block font-display text-xl sm:text-2xl not-italic text-charcoal">4</span>Art traditions</div>
+        <div class="w-px h-8 bg-charcoal/15"></div>
+        <div><span class="block font-display text-xl sm:text-2xl not-italic text-charcoal">100%</span>Hand-crafted</div>
+      </div>
+    </div>
+
+    <div class="relative fade-up" style="transition-delay:.15s">
+      <div class="aspect-[4/5] rounded-sm overflow-hidden border border-charcoal/10 shadow-2xl shadow-charcoal/10 relative">
+       <img src="png1.webp" alt="Traditional Madhubani Painting" class="w-full h-full object-cover" loading="eager">             alt="Model wearing a hand block-printed Art Bloom kurta"
+             class="w-full h-full object-cover" loading="eager">
+        <div class="absolute inset-0 bg-gradient-to-t from-charcoal/40 via-transparent to-transparent"></div>
+      </div>
+      <div class="absolute -left-4 sm:-left-6 -bottom-6 bg-paper border border-charcoal/15 rounded-full w-24 h-24 sm:w-28 sm:h-28 flex flex-col items-center justify-center text-center shadow-xl rotate-[-8deg]">
+        <span class="font-display italic text-terracotta text-xs sm:text-sm leading-tight">100%<br>Handmade</span>
+        <span class="text-[8px] sm:text-[9px] tracking-[0.2em] uppercase mt-1 text-charcoal/60">Since 2018</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-14 sm:mt-20 border-y border-charcoal/10 py-4 overflow-hidden relative bg-paper/40">
+    <div class="flex whitespace-nowrap marquee-track w-max font-display italic text-base sm:text-2xl text-charcoal/50">
+      <span class="mx-6 sm:mx-8">Hand-Painted</span><span class="mx-6 sm:mx-8">·</span>
+      <span class="mx-6 sm:mx-8">Hand Block-Printed</span><span class="mx-6 sm:mx-8">·</span>
+      <span class="mx-6 sm:mx-8">Hand-Stitched</span><span class="mx-6 sm:mx-8">·</span>
+      <span class="mx-6 sm:mx-8">Zero Machines</span><span class="mx-6 sm:mx-8">·</span>
+      <span class="mx-6 sm:mx-8">Hand-Painted</span><span class="mx-6 sm:mx-8">·</span>
+      <span class="mx-6 sm:mx-8">Hand Block-Printed</span><span class="mx-6 sm:mx-8">·</span>
+      <span class="mx-6 sm:mx-8">Hand-Stitched</span><span class="mx-6 sm:mx-8">·</span>
+      <span class="mx-6 sm:mx-8">Zero Machines</span><span class="mx-6 sm:mx-8">·</span>
+    </div>
+  </div>
+</section>
+
+<div class="block-print-strip h-9 bg-paper"></div>
+
+<!-- ============ FEATURED COLLECTIONS ============ -->
+<section id="collections" class="max-w-7xl mx-auto px-4 sm:px-8 py-16 sm:py-28">
+  <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-9 sm:mb-12 gap-4 fade-up">
+    <div>
+      <p class="uppercase tracking-[0.3em] text-xs text-terracotta mb-3">Shop by category</p>
+      <h2 class="font-display text-3xl sm:text-5xl">Featured Collections</h2>
+    </div>
+    <p class="text-charcoal/60 max-w-sm text-sm leading-relaxed">Four canvases, one philosophy — every garment is 100% hand-made, carrying a story painted by hand long before it's ever stitched.</p>
+  </div>
+
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+    <a href="#bestsellers" class="group relative overflow-hidden rounded-sm aspect-[3/4] fade-up hover-lift">
+     <img src="png3.webp" alt="Kalamkari Peacock Saree" class="w-full h-full object-cover"> alt="Sarees collection" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+      <div class="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/10 to-transparent"></div>
+      <span class="absolute top-2 left-2 sm:top-4 sm:left-4 bg-paper/95 text-terracotta text-[8px] sm:text-[9px] uppercase tracking-[0.15em] px-2 sm:px-2.5 py-1 rounded-full">Handmade</span>
+      <div class="absolute bottom-0 p-4 sm:p-6 text-paper">
+        <p class="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-beige/80 mb-1">Kalamkari &amp; Ikat</p>
+        <h3 class="font-display italic text-lg sm:text-2xl">Sarees</h3>
+      </div>
+    </a>
+    <a href="#bestsellers" class="group relative overflow-hidden rounded-sm aspect-[3/4] fade-up hover-lift" style="transition-delay:.05s">
+      <img src="https://images.unsplash.com/photo-1622470953794-aa9c70b0fb9d?q=80&w=800&auto=format&fit=crop" alt="Kurtas collection" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+      <div class="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/10 to-transparent"></div>
+      <span class="absolute top-2 left-2 sm:top-4 sm:left-4 bg-paper/95 text-terracotta text-[8px] sm:text-[9px] uppercase tracking-[0.15em] px-2 sm:px-2.5 py-1 rounded-full">Handmade</span>
+      <div class="absolute bottom-0 p-4 sm:p-6 text-paper">
+        <p class="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-beige/80 mb-1">Block-printed</p>
+        <h3 class="font-display italic text-lg sm:text-2xl">Kurtas</h3>
+      </div>
+    </a>
+    <a href="#bestsellers" class="group relative overflow-hidden rounded-sm aspect-[3/4] fade-up hover-lift" style="transition-delay:.1s">
+      <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800&auto=format&fit=crop" alt="Shirts collection" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+      <div class="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/10 to-transparent"></div>
+      <span class="absolute top-2 left-2 sm:top-4 sm:left-4 bg-paper/95 text-terracotta text-[8px] sm:text-[9px] uppercase tracking-[0.15em] px-2 sm:px-2.5 py-1 rounded-full">Handmade</span>
+      <div class="absolute bottom-0 p-4 sm:p-6 text-paper">
+        <p class="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-beige/80 mb-1">Warli Line Art</p>
+        <h3 class="font-display italic text-lg sm:text-2xl">Shirts</h3>
+      </div>
+    </a>
+    <a href="#bestsellers" class="group relative overflow-hidden rounded-sm aspect-[3/4] fade-up hover-lift" style="transition-delay:.15s">
+      <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800&auto=format&fit=crop" alt="T-shirts collection" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+      <div class="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/10 to-transparent"></div>
+      <span class="absolute top-2 left-2 sm:top-4 sm:left-4 bg-paper/95 text-terracotta text-[8px] sm:text-[9px] uppercase tracking-[0.15em] px-2 sm:px-2.5 py-1 rounded-full">Handmade</span>
+      <div class="absolute bottom-0 p-4 sm:p-6 text-paper">
+        <p class="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-beige/80 mb-1">Madhubani Motifs</p>
+        <h3 class="font-display italic text-lg sm:text-2xl">T-Shirts</h3>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ============ BEST SELLERS ============ -->
+<section id="bestsellers" class="bg-beige py-16 sm:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-9 sm:mb-12 gap-4 fade-up">
+      <div>
+        <p class="uppercase tracking-[0.3em] text-xs text-terracotta mb-3">Loved by our community</p>
+        <h2 class="font-display text-3xl sm:text-5xl">Best Sellers</h2>
+      </div>
+      <p class="text-charcoal/50 text-xs sm:text-sm">Tap any piece to view the gallery &amp; choose your size</p>
+    </div>
+
+    <!-- MOBILE: exactly 2 columns · DESKTOP: 3-4 columns -->
+    <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6"></div>
+  </div>
+</section>
+
+<div class="block-print-strip h-9 bg-paper"></div>
+
+<!-- ============ HANDMADE PROMISE ============ -->
+<section id="handmade" class="max-w-7xl mx-auto px-4 sm:px-8 py-16 sm:py-28">
+  <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14 fade-up">
+    <p class="uppercase tracking-[0.3em] text-xs text-terracotta mb-3">Our Promise</p>
+    <h2 class="font-display text-3xl sm:text-5xl mb-4">100% Handmade, From Start to Finish </h2>
+    <p class="text-charcoal/70 leading-relaxed">No shortcuts. Just traditional techniques, skilled hands and authentic artistry. Every single Art Bloom garment — saree, kurta, shirt or tee — passes through the hands of a traditional artisan at every stage.</p>
+  </div>
+
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+    <div class="fade-up bg-paper border border-charcoal/10 rounded-sm p-5 sm:p-7 text-center hover-lift">
+      <div class="w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-full bg-terracotta/10 flex items-center justify-center mb-4 sm:mb-5">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B4552F" stroke-width="1.6"><path d="M12 19c-4-3-7-6-7-9.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 7 3.5c0 3.5-3 6.5-7 9.5Z"/></svg>
+      </div>
+      <h3 class="font-display italic text-lg sm:text-xl mb-2">Hand-Painted</h3>
+      <p class="text-xs sm:text-sm text-charcoal/65 leading-relaxed">Every motif is first painted by hand onto paper, referencing generations-old folk-art patterns.</p>
+    </div>
+    <div class="fade-up bg-paper border border-charcoal/10 rounded-sm p-5 sm:p-7 text-center hover-lift" style="transition-delay:.05s">
+      <div class="w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-full bg-terracotta/10 flex items-center justify-center mb-4 sm:mb-5">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B4552F" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 14h16M14 4v16"/></svg>
+      </div>
+      <h3 class="font-display italic text-lg sm:text-xl mb-2">Hand-Carved Blocks</h3>
+      <p class="text-xs sm:text-sm text-charcoal/65 leading-relaxed">Artisans carve teak printing blocks by hand, one motif at a time, no two blocks ever identical.</p>
+    </div>
+    <div class="fade-up bg-paper border border-charcoal/10 rounded-sm p-5 sm:p-7 text-center hover-lift" style="transition-delay:.1s">
+      <div class="w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-full bg-terracotta/10 flex items-center justify-center mb-4 sm:mb-5">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B4552F" stroke-width="1.6"><path d="M4 20 20 4M4 4l6 6M14 14l6 6"/></svg>
+      </div>
+      <h3 class="font-display italic text-lg sm:text-xl mb-2">Hand Block-Printed</h3>
+      <p class="text-xs sm:text-sm text-charcoal/65 leading-relaxed">Each block is dipped in natural dye and hand-stamped onto fabric, stroke by careful stroke.</p>
+    </div>
+    <div class="fade-up bg-paper border border-charcoal/10 rounded-sm p-5 sm:p-7 text-center hover-lift" style="transition-delay:.15s">
+      <div class="w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-full bg-terracotta/10 flex items-center justify-center mb-4 sm:mb-5">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B4552F" stroke-width="1.6"><path d="M6 12a6 6 0 1 1 12 0 6 6 0 0 1-12 0Z"/><path d="M9 12h6M12 9v6"/></svg>
+      </div>
+      <h3 class="font-display italic text-lg sm:text-xl mb-2">Hand-Stitched</h3>
+      <p class="text-xs sm:text-sm text-charcoal/65 leading-relaxed">Local tailors cut and stitch every garment to size — the final human touch before it reaches you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BRAND STORY ============ -->
+<section id="story" class="bg-beige">
+<div class="max-w-7xl mx-auto px-4 sm:px-8 py-16 sm:py-28 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+  <div class="relative fade-up order-2 lg:order-1">
+    <div class="aspect-[4/3] rounded-sm overflow-hidden border border-charcoal/10 shadow-xl">
+      <img src="png2.png" alt="Artisan hand block-printing fabric" class="w-full h-full object-cover"> alt="Artisan hand block-printing fabric" class="w-full h-full object-cover">
+    </div>
+    <div class="absolute -right-4 sm:-right-6 -bottom-6 bg-terracotta text-paper rounded-full w-24 h-24 sm:w-32 sm:h-32 hidden sm:flex flex-col items-center justify-center text-center rotate-6 shadow-xl">
+      <span class="font-display italic text-sm sm:text-base leading-tight">Made by<br>Hand</span>
+      <span class="text-[8px] sm:text-[9px] tracking-[0.2em] uppercase mt-1 opacity-80">Village to Wardrobe</span>
+    </div>
+  </div>
+
+  <div class="fade-up order-1 lg:order-2" style="transition-delay:.1s">
+    <p class="uppercase tracking-[0.3em] text-xs text-terracotta mb-4">Our Story</p>
+    <h2 class="font-display text-3xl sm:text-5xl leading-tight mb-6">
+      Where <span class="italic text-terracotta">heritage</span><br> finds a new silhouette
+    </h2>
+    <p class="text-charcoal/70 leading-relaxed mb-5 text-sm sm:text-base">
+      Art Bloom began with a simple question: why should centuries-old folk art live only on walls and canvases? We travel to villages across Gujarat, Bihar, Andhra Pradesh and Rajasthan, working directly with artisan families who still carve their own printing blocks and mix their own natural dyes.
+    </p>
+    <p class="text-charcoal/70 leading-relaxed mb-8 text-sm sm:text-base">
+      Every saree, kurta, shirt and tee we make is 100% hand-made and hand-crafted — not a digital reproduction, but the real imperfect, expressive touch of art made by hand.
+    </p>
+    <div class="grid grid-cols-3 gap-4 sm:gap-6">
+      <div>
+        <span class="font-display text-2xl sm:text-3xl text-terracotta italic">7</span>
+        <p class="text-[10px] sm:text-xs uppercase tracking-widest text-charcoal/60 mt-1">Indian states</p>
+      </div>
+      <div>
+        <span class="font-display text-2xl sm:text-3xl text-terracotta italic">40+</span>
+        <p class="text-[10px] sm:text-xs uppercase tracking-widest text-charcoal/60 mt-1">Artisan families</p>
+      </div>
+      <div>
+        <span class="font-display text-2xl sm:text-3xl text-terracotta italic">0</span>
+        <p class="text-[10px] sm:text-xs uppercase tracking-widest text-charcoal/60 mt-1">Machines used</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ NEWSLETTER STRIP ============ -->
+<section class="bg-indigo text-paper">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 py-12 sm:py-14 grid md:grid-cols-2 gap-6 items-center">
+    <div class="fade-up">
+      <h3 class="font-display italic text-2xl sm:text-4xl">Join the Bloom List</h3>
+      <p class="text-paper/70 mt-2 text-sm">New drops, artisan stories, and early access — no spam, just craft.</p>
+    </div>
+    <form id="newsletterForm" class="flex flex-col sm:flex-row gap-3 fade-up" style="transition-delay:.1s">
+      <label for="newsletterEmail" class="sr-only">Email address</label>
+      <input id="newsletterEmail" type="email" required placeholder="your@email.com"
+        class="flex-1 bg-paper/10 border border-paper/25 placeholder-paper/50 px-5 py-3.5 rounded-sm focus:bg-paper/15 outline-none text-sm">
+      <button type="submit" class="bg-terracotta hover:bg-terracotta-dk transition-colors px-7 py-3.5 text-sm uppercase tracking-[0.12em] rounded-sm shrink-0">Subscribe</button>
+    </form>
+    <p id="newsletterMsg" class="md:col-span-2 text-xs text-turmeric hidden">Thank you — welcome to the Bloom List 🌿</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="footer" class="bg-charcoal text-beige/90">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 pt-14 sm:pt-16 pb-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-12">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <svg width="28" height="28" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="16" stroke="#C8901F" stroke-width="1.3"/><path d="M17 7c3 4 6 5 9 5-1 4-3 7-9 15-6-8-8-11-9-15 3 0 6-1 9-5Z" fill="#C8901F"/></svg>
+          <span class="font-display text-xl">Art <span class="italic text-turmeric">Bloom</span></span>
+        </div>
+        <p class="text-sm text-beige/60 leading-relaxed max-w-xs">100% hand-made, hand-crafted clothing rooted in Indian folk art — Warli, Madhubani, Kalamkari &amp; Bagru, worn every day.</p>
+      </div>
+
+      <div>
+        <h4 class="uppercase text-xs tracking-[0.2em] text-beige/50 mb-4">Shop</h4>
+        <ul class="space-y-2.5 text-sm text-beige/75">
+          <li><a href="#bestsellers" class="hover:text-turmeric transition-colors">Sarees</a></li>
+          <li><a href="#bestsellers" class="hover:text-turmeric transition-colors">Kurtas</a></li>
+          <li><a href="#bestsellers" class="hover:text-turmeric transition-colors">Shirts</a></li>
+          <li><a href="#bestsellers" class="hover:text-turmeric transition-colors">T-Shirts</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="uppercase text-xs tracking-[0.2em] text-beige/50 mb-4">Company</h4>
+        <ul class="space-y-2.5 text-sm text-beige/75">
+          <li><a href="#story" class="hover:text-turmeric transition-colors">Our Story</a></li>
+          <li><a href="#handmade" class="hover:text-turmeric transition-colors">Handmade Promise</a></li>
+          <li><a href="#" class="hover:text-turmeric transition-colors">Shipping &amp; Returns</a></li>
+          <li><a href="https://wa.me/919650328755" target="_blank" rel="noopener" class="hover:text-turmeric transition-colors">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="uppercase text-xs tracking-[0.2em] text-beige/50 mb-4">Get in touch</h4>
+        <ul class="space-y-3 text-sm text-beige/75">
+          <li>
+            <a href="https://instagram.com/art_bloom508" target="_blank" rel="noopener" class="flex items-center gap-2.5 hover:text-turmeric transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="shrink-0"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+              @art_bloom508
+            </a>
+          </li>
+          <li>
+            <a href="mailto:artbloom508@gmail.com" class="flex items-center gap-2.5 hover:text-turmeric transition-colors break-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="shrink-0"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 6 8 7 8-7"/></svg>
+              artbloom508@gmail.com
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/919650328755" target="_blank" rel="noopener" class="flex items-center gap-2.5 hover:text-turmeric transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="shrink-0"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.3A9 9 0 1 0 12 3Z"/><path d="M8.5 8.7c.2-.5.4-.5.7-.5h.5c.2 0 .4 0 .6.4.2.5.7 1.6.7 1.8s0 .3-.2.5c-.1.2-.2.3-.4.4-.2.2-.3.3-.1.6.2.3.8 1.2 1.6 1.9 1.1 1 2 1.2 2.3 1.4.3.1.5.1.6-.1.2-.2.6-.7.8-1 .2-.2.4-.2.6-.1l1.6.8c.2.1.4.2.4.4 0 .2 0 1-.4 1.5-.3.5-1.6 1.1-2.6.7-1.5-.5-3.3-1.4-4.8-3.1C9 12.6 8.4 11 8.2 10.5c-.1-.4-.5-1.2 0-1.8Z" fill="currentColor" stroke="none"/></svg>
+              +91 96503 28755
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="block-print-strip h-7 opacity-60"></div>
+
+    <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-beige/50 text-center">
+      <p>© 2026 Art Bloom. All rights reserved. 100% Hand-Made &amp; Hand-Crafted.</p>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-turmeric transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-turmeric transition-colors">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp button -->
+<a href="https://wa.me/919650328755" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"
+   class="fixed bottom-5 left-5 z-[60] bg-whatsapp text-white w-13 h-13 sm:w-14 sm:h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-105 transition-transform" style="width:52px;height:52px;">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.2c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.2.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.2-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5C10.3 9 9.8 7.8 9.6 7.3c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.2.2-.9 1-.9 2.3s1 2.6 1.1 2.8c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.5-.3Z"/></svg>
+</a>
+
+<!-- ============ TOAST ============ -->
+<div id="cartToast" class="fixed bottom-6 left-1/2 -translate-x-1/2 translate-y-24 opacity-0 transition-all duration-300 bg-charcoal text-paper px-6 py-3 rounded-full text-sm shadow-2xl z-[70] flex items-center gap-2 max-w-[90vw]">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8901F" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>
+  <span id="cartToastText">Added to cart</span>
+</div>
+
+<!-- ============ PRODUCT MODAL ============ -->
+<div id="productOverlay" class="fixed inset-0 bg-charcoal/60 opacity-0 pointer-events-none overlay-fade z-[85] flex items-end sm:items-center justify-center">
+  <div id="productModal" class="modal-pop opacity-0 translate-y-6 sm:scale-95 sm:translate-y-0 bg-paper w-full sm:max-w-3xl sm:rounded-sm max-h-[92vh] sm:max-h-[88vh] overflow-y-auto modal-scroll rounded-t-2xl sm:rounded-t-sm">
+    <div class="flex items-center justify-end px-4 sm:px-6 pt-4">
+      <button id="closeProductModal" aria-label="Close" class="w-9 h-9 rounded-full flex items-center justify-center hover:bg-charcoal/5 transition-colors">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+
+    <div class="px-4 sm:px-8 pb-8 grid sm:grid-cols-2 gap-6 sm:gap-9">
+      <!-- Gallery -->
+      <div>
+        <div class="aspect-square rounded-sm overflow-hidden border border-charcoal/10 bg-beige/40">
+          <img id="modalMainImage" src="" alt="" class="w-full h-full object-cover gallery-fade">
+        </div>
+        <div id="modalThumbs" class="grid grid-cols-4 gap-2 sm:gap-3 mt-3"></div>
+      </div>
+
+      <!-- Details -->
+      <div>
+        <span id="modalStyleTag" class="inline-block bg-terracotta/10 text-terracotta text-[10px] uppercase tracking-[0.15em] px-3 py-1 rounded-full mb-3"></span>
+        <h2 id="modalName" class="font-display text-2xl sm:text-3xl leading-snug mb-2"></h2>
+        <p id="modalCategory" class="text-xs uppercase tracking-[0.2em] text-charcoal/45 mb-4"></p>
+        <p id="modalPrice" class="text-terracotta font-medium text-2xl mb-5"></p>
+        <p class="text-sm text-charcoal/65 leading-relaxed mb-6">Hand-painted, hand block-printed and hand-stitched by our artisan partners — no two pieces are exactly alike.</p>
+
+        <!-- Size selector (Kurta / Shirt / T-Shirt) -->
+        <div id="sizeSelectorWrap" class="mb-5 hidden">
+          <label for="sizeSelect" class="block text-xs uppercase tracking-widest text-charcoal/60 mb-2">Select Size</label>
+          <select id="sizeSelect" class="w-full border border-charcoal/15 bg-white/60 px-4 py-3 rounded-sm text-sm outline-none focus:border-terracotta">
+            <option value="S">S</option>
+            <option value="M" selected>M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+          </select>
+        </div>
+
+        <!-- Free size note (Saree) -->
+        <div id="freeSizeWrap" class="mb-5 hidden">
+          <div class="flex items-center gap-2 bg-beige/70 border border-charcoal/10 rounded-sm px-4 py-3">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B4552F" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+            <span class="text-sm font-medium">Free Size Saree</span>
+          </div>
+          <p class="text-xs text-charcoal/50 mt-1.5">Standard 5.5m saree with unstitched blouse piece — fits most sizes.</p>
+        </div>
+
+        <!-- Custom note -->
+        <div class="mb-6">
+          <label for="customNote" class="block text-xs uppercase tracking-widest text-charcoal/60 mb-2">Custom Note <span class="normal-case text-charcoal/35">(optional — special instructions or measurements)</span></label>
+          <textarea id="customNote" rows="2" placeholder="e.g. blouse stitched to size 36, sleeve length 6 inches..." class="w-full border border-charcoal/15 bg-white/60 px-4 py-3 rounded-sm text-sm outline-none focus:border-terracotta resize-none"></textarea>
+        </div>
+
+        <button id="modalAddToCart" class="w-full bg-terracotta text-paper py-4 uppercase tracking-[0.12em] text-sm rounded-sm hover:bg-terracotta-dk transition-colors">
+          Add to Cart
+        </button>
+        <p class="text-center text-[11px] text-charcoal/45 tracking-wide mt-3">Supporting 40+ artisan families with every order 🌿</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CART DRAWER ============ -->
+<div id="cartOverlay" class="fixed inset-0 bg-charcoal/50 opacity-0 pointer-events-none overlay-fade z-[80]"></div>
+<aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-paper z-[90] translate-x-full drawer-panel flex flex-col shadow-2xl" role="dialog" aria-modal="true" aria-label="Shopping cart">
+  <div class="flex items-center justify-between px-6 py-5 border-b border-charcoal/10">
+    <h2 class="font-display text-2xl">Your Cart</h2>
+    <button id="closeCart" aria-label="Close cart" class="w-9 h-9 rounded-full flex items-center justify-center hover:bg-charcoal/5 transition-colors">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+
+  <div id="cartEmptyState" class="flex-1 flex flex-col items-center justify-center text-center px-8">
+    <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#2A2420" stroke-opacity="0.25" stroke-width="1.4" class="mb-4"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 2H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
+    <p class="font-display italic text-xl text-charcoal/60 mb-1">Your cart is empty</p>
+    <p class="text-sm text-charcoal/45">Tap a product to explore sizes &amp; add it here.</p>
+  </div>
+
+  <div id="cartItems" class="flex-1 overflow-y-auto modal-scroll px-6 py-5 space-y-5 hidden"></div>
+
+  <div id="cartFooter" class="border-t border-charcoal/10 px-6 py-6 space-y-4 hidden">
+    <div class="flex items-center justify-between text-sm text-charcoal/60">
+      <span>Subtotal</span>
+      <span id="cartSubtotal">₹0</span>
+    </div>
+    <div class="flex items-center justify-between text-sm text-charcoal/60">
+      <span>Shipping</span>
+      <span id="cartShipping">Free</span>
+    </div>
+    <div class="flex items-center justify-between font-display text-xl pt-2 border-t border-charcoal/10">
+      <span>Total</span>
+      <span id="cartTotal" class="text-terracotta">₹0</span>
+    </div>
+    <button id="checkoutBtn" class="w-full bg-terracotta text-paper py-4 uppercase tracking-[0.12em] text-sm rounded-sm hover:bg-terracotta-dk transition-colors">
+      Proceed to Checkout
+    </button>
+    <p class="text-center text-[11px] text-charcoal/45 tracking-wide">Supporting 40+ artisan families with every order 🌿</p>
+  </div>
+</aside>
+
+<!-- ============ CHECKOUT MODAL ============ -->
+<div id="checkoutOverlay" class="fixed inset-0 bg-charcoal/60 opacity-0 pointer-events-none overlay-fade z-[95] flex items-start sm:items-center justify-center p-0 sm:p-6 overflow-y-auto">
+  <div id="checkoutModal" class="modal-pop opacity-0 scale-95 bg-paper w-full sm:max-w-2xl sm:rounded-sm my-0 sm:my-auto min-h-full sm:min-h-0 flex flex-col">
+
+    <div class="flex items-center justify-between px-6 sm:px-8 py-5 border-b border-charcoal/10 sticky top-0 bg-paper z-10">
+      <div>
+        <h2 class="font-display text-2xl">Checkout</h2>
+        <p id="checkoutStepLabel" class="text-xs uppercase tracking-[0.2em] text-terracotta mt-1">Step 1 of 2 · Shipping Details</p>
+      </div>
+      <button id="closeCheckout" aria-label="Close checkout" class="w-9 h-9 rounded-full flex items-center justify-center hover:bg-charcoal/5 transition-colors">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+
+    <div class="px-6 sm:px-8 py-7 flex-1">
+
+      <!-- STEP 1: Shipping -->
+      <form id="shippingStep" class="space-y-5">
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label for="fullName" class="block text-xs uppercase tracking-widest text-charcoal/60 mb-2">Full Name</label>
+            <input id="fullName" required type="text" placeholder="Ananya Sharma" class="w-full border border-charcoal/15 bg-white/60 px-4 py-3 rounded-sm text-sm outline-none focus:border-terracotta">
+          </div>
+          <div>
+            <label for="phone" class="block text-xs uppercase tracking-widest text-charcoal/60 mb-2">Phone Number</label>
+            <input id="phone" required type="tel" pattern="[0-9]{10}" placeholder="98765 43210" class="w-full border border-charcoal/15 bg-white/60 px-4 py-3 rounded-sm text-sm outline-none focus:border-terracotta">
+          </div>
+        </div>
+        <div>
+          <label for="address" class="block text-xs uppercase tracking-widest text-charcoal/60 mb-2">Address</label>
+          <textarea id="address" required rows="2" placeholder="House no., street, locality" class="w-full border border-charcoal/15 bg-white/60 px-4 py-3 rounded-sm text-sm outline-none focus:border-terracotta resize-none"></textarea>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label for="city" class="block text-xs uppercase tracking-widest text-charcoal/60 mb-2">City</label>
+            <input id="city" required type="text" placeholder="Jaipur" class="w-full border border-charcoal/15 bg-white/60 px-4 py-3 rounded-sm text-sm outline-none focus:border-terracotta">
+          </div>
+          <div>
+            <label for="pincode" class="block text-xs uppercase tracking-widest text-charcoal/60 mb-2">Pincode</label>
+            <input id="pincode" required type="text" pattern="[0-9]{6}" placeholder="302001" class="w-full border border-charcoal/15 bg-white/60 px-4 py-3 rounded-sm text-sm outline-none focus:border-terracotta">
+          </div>
+        </div>
+
+        <button type="submit" class="w-full bg-charcoal text-paper py-4 uppercase tracking-[0.12em] text-sm rounded-sm hover:bg-terracotta transition-colors mt-2">
+          Continue to Payment
+        </button>
+      </form>
+
+      <!-- STEP 2: Payment -->
+      <div id="paymentStep" class="hidden space-y-6">
+
+        <div class="bg-beige/70 border border-charcoal/10 rounded-sm p-4 flex items-start justify-between gap-4 text-sm">
+          <div>
+            <p class="text-charcoal/50 text-xs uppercase tracking-widest mb-1">Deliver to</p>
+            <p id="reviewShipping" class="text-charcoal/80 leading-relaxed"></p>
+          </div>
+          <button id="editShipping" class="text-terracotta text-xs uppercase tracking-widest underline shrink-0">Edit</button>
+        </div>
+
+        <div>
+          <p class="text-xs uppercase tracking-widest text-charcoal/60 mb-3">Select Payment Method</p>
+          <div class="space-y-3">
+            <div>
+              <input type="radio" name="payMethod" id="payUpi" value="UPI" class="pay-radio sr-only" checked>
+              <label for="payUpi" class="flex items-center gap-4 border border-charcoal/15 rounded-sm px-4 py-4 cursor-pointer transition-colors">
+                <span class="radio-dot w-4 h-4 rounded-full border-2 border-terracotta shrink-0 transition-colors"></span>
+                <span class="flex-1">
+                  <span class="block font-medium text-sm">UPI (GPay / PhonePe / Paytm)</span>
+                  <span class="block text-xs text-charcoal/50 mt-0.5">Pay instantly using any UPI app</span>
+                </span>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2A2420" stroke-opacity="0.4" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>
+              </label>
+            </div>
+            <div>
+              <input type="radio" name="payMethod" id="payCard" value="Card" class="pay-radio sr-only">
+              <label for="payCard" class="flex items-center gap-4 border border-charcoal/15 rounded-sm px-4 py-4 cursor-pointer transition-colors">
+                <span class="radio-dot w-4 h-4 rounded-full border-2 border-terracotta shrink-0 transition-colors"></span>
+                <span class="flex-1">
+                  <span class="block font-medium text-sm">Credit / Debit Card</span>
+                  <span class="block text-xs text-charcoal/50 mt-0.5">Visa, Mastercard, RuPay accepted</span>
+                </span>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2A2420" stroke-opacity="0.4" stroke-width="1.6"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20"/></svg>
+              </label>
+            </div>
+            <div>
+              <input type="radio" name="payMethod" id="payCod" value="COD" class="pay-radio sr-only">
+              <label for="payCod" class="flex items-center gap-4 border border-charcoal/15 rounded-sm px-4 py-4 cursor-pointer transition-colors">
+                <span class="radio-dot w-4 h-4 rounded-full border-2 border-terracotta shrink-0 transition-colors"></span>
+                <span class="flex-1">
+                  <span class="block font-medium text-sm">Cash on Delivery</span>
+                  <span class="block text-xs text-charcoal/50 mt-0.5">Pay when your order arrives</span>
+                </span>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2A2420" stroke-opacity="0.4" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 12h6M12 9v6"/></svg>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div id="cardFields" class="hidden grid sm:grid-cols-2 gap-5">
+          <div class="sm:col-span-2">
+            <label for="cardNumber" class="block text-xs uppercase tracking-widest text-charcoal/60 mb-2">Card Number</label>
+            <input id="cardNumber" type="text" placeholder="1234 5678 9012 3456" maxlength="19" class="w-full border border-charcoal/15 bg-white/60 px-4 py-3 rounded-sm text-sm outline-none focus:border-terracotta">
+          </div>
+          <div>
+            <label for="cardExpiry" class="block text-xs uppercase tracking-widest text-charcoal/60 mb-2">Expiry</label>
+            <input id="cardExpiry" type="text" placeholder="MM/YY" maxlength="5" class="w-full border border-charcoal/15 bg-white/60 px-4 py-3 rounded-sm text-sm outline-none focus:border-terracotta">
+          </div>
+          <div>
+            <label for="cardCvv" class="block text-xs uppercase tracking-widest text-charcoal/60 mb-2">CVV</label>
+            <input id="cardCvv" type="text" placeholder="123" maxlength="3" class="w-full border border-charcoal/15 bg-white/60 px-4 py-3 rounded-sm text-sm outline-none focus:border-terracotta">
+          </div>
+        </div>
+
+        <div class="border-t border-charcoal/10 pt-5 space-y-2">
+          <div class="flex items-center justify-between text-sm text-charcoal/60">
+            <span>Subtotal</span><span id="paySubtotal">₹0</span>
+          </div>
+          <div class="flex items-center justify-between text-sm text-charcoal/60">
+            <span>Shipping</span><span id="payShipping">Free</span>
+          </div>
+          <div class="flex items-center justify-between font-display text-xl pt-2">
+            <span>Total</span><span id="payTotal" class="text-terracotta">₹0</span>
+          </div>
+        </div>
+
+        <button id="placeOrderBtn" class="w-full bg-terracotta text-paper py-4 uppercase tracking-[0.12em] text-sm rounded-sm hover:bg-terracotta-dk transition-colors">
+          Place Order
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============ SUCCESS MODAL ============ -->
+<div id="successOverlay" class="fixed inset-0 bg-charcoal/70 opacity-0 pointer-events-none overlay-fade z-[100] flex items-center justify-center p-6">
+  <div id="successModal" class="modal-pop opacity-0 scale-95 bg-paper max-w-md w-full rounded-sm p-7 sm:p-10 text-center">
+    <div class="w-16 h-16 mx-auto rounded-full bg-terracotta/10 flex items-center justify-center mb-6">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#B4552F" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+    </div>
+    <h2 class="font-display text-2xl sm:text-3xl mb-3">Order Placed Successfully!</h2>
+    <p class="text-charcoal/65 leading-relaxed mb-2">Thank you for supporting handmade art. Your order <span id="successOrderId" class="text-terracotta font-medium"></span> is being lovingly packed by our artisan partners.</p>
+    <p class="text-charcoal/50 text-sm mb-7">For a faster response, confirm your order directly on WhatsApp.</p>
+
+    <a id="whatsappOrderBtn" href="#" target="_blank" rel="noopener"
+       class="w-full bg-whatsapp text-white py-4 rounded-sm flex items-center justify-center gap-2.5 font-medium text-sm hover:opacity-90 transition-opacity mb-3">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="white"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.2c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.2.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.2-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5C10.3 9 9.8 7.8 9.6 7.3c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.2.2-.9 1-.9 2.3s1 2.6 1.1 2.8c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.5-.3Z"/></svg>
+      Send Order on WhatsApp
+    </a>
+    <button id="closeSuccess" class="bg-charcoal text-paper px-8 py-3.5 uppercase tracking-[0.12em] text-sm rounded-sm hover:bg-terracotta transition-colors w-full">
+      Continue Shopping
+    </button>
+  </div>
+</div>
+
+<script>
+  // =========================================================
+  // Product data — each with a 4-photo gallery
+  // =========================================================
+  const products = [
+    { id: 1, name: "Kalamkari Peacock Saree", style: "Kalamkari", category: "Saree", price: 4599,
+      images: [
+    "png3.webp",
+        "png4.jpg",
+        "png5.webp",
+        "png6.jpg"
+      ] },
+    { id: 2, name: "Warli Village Kurta", style: "Warli", category: "Kurta", price: 2199,
+      images: [
+        "https://images.unsplash.com/photo-1622470953794-aa9c70b0fb9d?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=900&auto=format&fit=crop"
+      ] },
+    { id: 3, name: "Bagru Indigo Shirt", style: "Bagru", category: "Shirt", price: 1899,
+      images: [
+        "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1622470953794-aa9c70b0fb9d?q=80&w=900&auto=format&fit=crop"
+      ] },
+    { id: 4, name: "Madhubani Fish Tee", style: "Madhubani", category: "T-Shirt", price: 1099,
+      images: [
+        "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=900&auto=format&fit=crop"
+      ] },
+    { id: 5, name: "Kalamkari Tree-of-Life Kurta", style: "Kalamkari", category: "Kurta", price: 2799,
+      images: [
+        "https://images.unsplash.com/photo-1583391733956-6c78276477e2?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1622470953794-aa9c70b0fb9d?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1610030181087-540276c8de85?q=80&w=900&auto=format&fit=crop"
+      ] },
+    { id: 6, name: "Warli Dance Tee", style: "Warli", category: "T-Shirt", price: 999,
+      images: [
+        "https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=900&auto=format&fit=crop"
+      ] },
+    { id: 7, name: "Bagru Floral Saree", style: "Bagru", category: "Saree", price: 3999,
+      images: [
+        "https://images.unsplash.com/photo-1610189844301-c31d69dd3e30?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1610030181087-540276c8de85?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1583391733956-6c78276477e2?q=80&w=900&auto=format&fit=crop"
+      ] },
+    { id: 8, name: "Madhubani Sun Shirt", style: "Madhubani", category: "Shirt", price: 2049,
+      images: [
+        "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?q=80&w=900&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=900&auto=format&fit=crop"
+      ] },
+  ];
+
+  const GALLERY_LABELS = ["Front View", "Back View", "Artisan Close-up", "Side View"];
+  const inr = (n) => "₹" + n.toLocaleString("en-IN");
+  const WHATSAPP_NUMBER = "919650328755";
+
+  // =========================================================
+  // Render product grid (2 cols mobile / 3-4 desktop)
+  // =========================================================
+  const grid = document.getElementById("productGrid");
+  grid.innerHTML = products.map((p, i) => `
+    <button type="button" data-open-id="${p.id}" class="product-card text-left group bg-paper rounded-sm overflow-hidden border border-charcoal/10 hover-lift fade-up" style="transition-delay:${(i % 4) * 0.05}s">
+      <div class="relative aspect-[4/5] overflow-hidden">
+        <img src="${p.images[0]}" alt="${p.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+        <span class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-paper/95 border border-charcoal/15 text-terracotta text-[8px] sm:text-[10px] uppercase tracking-[0.15em] px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full">${p.style}</span>
+        <span class="absolute top-2 right-2 sm:top-3 sm:right-3 bg-charcoal/85 text-beige text-[7px] sm:text-[9px] uppercase tracking-[0.12em] px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full">Handmade</span>
+      </div>
+      <div class="p-3 sm:p-5">
+        <p class="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-charcoal/45 mb-0.5 sm:mb-1">${p.category}</p>
+        <h3 class="font-display text-sm sm:text-lg leading-snug mb-1.5 sm:mb-2">${p.name}</h3>
+        <div class="flex items-center justify-between mt-2 sm:mt-3">
+          <span class="font-body font-medium text-terracotta text-sm sm:text-lg">${inr(p.price)}</span>
+          <span class="hidden sm:inline-block bg-charcoal text-paper text-xs uppercase tracking-[0.1em] px-4 py-2.5 rounded-sm group-hover:bg-terracotta transition-colors">View</span>
+        </div>
+      </div>
+    </button>
+  `).join("");
+
+  // =========================================================
+  // Product Modal
+  // =========================================================
+  const productOverlay = document.getElementById("productOverlay");
+  const productModal   = document.getElementById("productModal");
+  const closeProductModalBtn = document.getElementById("closeProductModal");
+
+  const modalMainImage = document.getElementById("modalMainImage");
+  const modalThumbs     = document.getElementById("modalThumbs");
+  const modalStyleTag   = document.getElementById("modalStyleTag");
+  const modalName       = document.getElementById("modalName");
+  const modalCategory   = document.getElementById("modalCategory");
+  const modalPrice      = document.getElementById("modalPrice");
+  const sizeSelectorWrap= document.getElementById("sizeSelectorWrap");
+  const freeSizeWrap    = document.getElementById("freeSizeWrap");
+  const sizeSelect      = document.getElementById("sizeSelect");
+  const customNote      = document.getElementById("customNote");
+  const modalAddToCart  = document.getElementById("modalAddToCart");
+
+  let activeProduct = null;
+
+  function openProductModal(id) {
+    const product = products.find(p => p.id === id);
+    if (!product) return;
+    activeProduct = product;
+
+    modalStyleTag.textContent = product.style;
+    modalName.textContent = product.name;
+    modalCategory.textContent = product.category;
+    modalPrice.textContent = inr(product.price);
+    customNote.value = "";
+
+    // Conditional size vs free-size saree note
+    const isSaree = product.category === "Saree";
+    sizeSelectorWrap.classList.toggle("hidden", isSaree);
+    freeSizeWrap.classList.toggle("hidden", !isSaree);
+    sizeSelect.value = "M";
+
+    // Gallery
+    renderGallery(product);
+
+    productOverlay.classList.remove("opacity-0", "pointer-events-none");
+    requestAnimationFrame(() => {
+      productModal.classList.remove("opacity-0", "translate-y-6", "sm:scale-95");
+    });
+    document.body.classList.add("overflow-hidden");
+  }
+
+  function renderGallery(product) {
+    modalMainImage.src = product.images[0];
+    modalMainImage.alt = product.name + " — " + GALLERY_LABELS[0];
+
+    modalThumbs.innerHTML = product.images.map((img, idx) => `
+      <button type="button" class="gallery-thumb aspect-square rounded-sm overflow-hidden border-2 ${idx === 0 ? 'thumb-active' : 'border-transparent'} opacity-70 hover:opacity-100 transition-opacity" data-idx="${idx}" aria-label="${GALLERY_LABELS[idx]}">
+        <img src="${img}" alt="${GALLERY_LABELS[idx]}" class="w-full h-full object-cover">
+      </button>
+    `).join("");
+  }
+
+  modalThumbs.addEventListener("click", (e) => {
+    const thumb = e.target.closest(".gallery-thumb");
+    if (!thumb || !activeProduct) return;
+    const idx = Number(thumb.dataset.idx);
+    modalMainImage.style.opacity = 0;
+    setTimeout(() => {
+      modalMainImage.src = activeProduct.images[idx];
+      modalMainImage.alt = activeProduct.name + " — " + GALLERY_LABELS[idx];
+      modalMainImage.style.opacity = 1;
+    }, 120);
+    modalThumbs.querySelectorAll(".gallery-thumb").forEach(t => t.classList.remove("thumb-active", "border-transparent"));
+    modalThumbs.querySelectorAll(".gallery-thumb").forEach(t => t.classList.add("border-transparent"));
+    thumb.classList.remove("border-transparent");
+    thumb.classList.add("thumb-active");
+  });
+
+  function closeProductModal() {
+    productModal.classList.add("opacity-0", "translate-y-6", "sm:scale-95");
+    productOverlay.classList.add("opacity-0", "pointer-events-none");
+    document.body.classList.remove("overflow-hidden");
+    activeProduct = null;
+  }
+  closeProductModalBtn.addEventListener("click", closeProductModal);
+  productOverlay.addEventListener("click", (e) => { if (e.target === productOverlay) closeProductModal(); });
+
+  document.addEventListener("click", (e) => {
+    const card = e.target.closest(".product-card");
+    if (card) openProductModal(Number(card.dataset.openId));
+  });
+
+  modalAddToCart.addEventListener("click", () => {
+    if (!activeProduct) return;
+    const isSaree = activeProduct.category === "Saree";
+    const size = isSaree ? "Free Size" : sizeSelect.value;
+    const note = customNote.value.trim();
+    addToCart(activeProduct, size, note);
+    closeProductModal();
+  });
+
+  // =========================================================
+  // Cart state — cart lines keyed by product id + size + note
+  // =========================================================
+  let cart = []; // { uid, id, name, price, img, qty, size, note }
+
+  const cartCountEl   = document.getElementById("cartCount");
+  const cartItemsEl   = document.getElementById("cartItems");
+  const cartFooterEl  = document.getElementById("cartFooter");
+  const cartEmptyEl   = document.getElementById("cartEmptyState");
+  const cartSubtotalEl= document.getElementById("cartSubtotal");
+  const cartTotalEl   = document.getElementById("cartTotal");
+  const cartToast     = document.getElementById("cartToast");
+  const cartToastText = document.getElementById("cartToastText");
+
+  const FREE_SHIP_THRESHOLD = 2999;
+
+  function cartCount() { return cart.reduce((sum, item) => sum + item.qty, 0); }
+  function cartSubtotal() { return cart.reduce((sum, item) => sum + item.qty * item.price, 0); }
+
+  function addToCart(product, size, note) {
+    const uid = product.id + "|" + size + "|" + note;
+    const existing = cart.find(item => item.uid === uid);
+    if (existing) {
+      existing.qty++;
+    } else {
+      cart.push({ uid, id: product.id, name: product.name, price: product.price, img: product.images[0], qty: 1, size, note });
+    }
+    renderCart();
+    showToast(`${product.name} (${size}) added to cart`);
+  }
+
+  function renderCart() {
+    const count = cartCount();
+    cartCountEl.textContent = count;
+    cartCountEl.classList.remove("cart-bump");
+    void cartCountEl.offsetWidth;
+    cartCountEl.classList.add("cart-bump");
+
+    if (cart.length === 0) {
+      cartEmptyEl.classList.remove("hidden");
+      cartItemsEl.classList.add("hidden");
+      cartFooterEl.classList.add("hidden");
+      return;
+    }
+
+    cartEmptyEl.classList.add("hidden");
+    cartItemsEl.classList.remove("hidden");
+    cartFooterEl.classList.remove("hidden");
+
+    cartItemsEl.innerHTML = cart.map(item => `
+      <div class="flex gap-4 items-start" data-cart-uid="${item.uid}">
+        <div class="w-20 h-24 rounded-sm overflow-hidden shrink-0 border border-charcoal/10">
+          <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover">
+        </div>
+        <div class="flex-1 min-w-0">
+          <h4 class="font-display text-base leading-snug pr-2">${item.name}</h4>
+          <p class="text-[11px] uppercase tracking-widest text-charcoal/45 mt-1">Size: ${item.size}</p>
+          ${item.note ? `<p class="text-[11px] text-charcoal/50 italic mt-0.5">"${item.note}"</p>` : ""}
+          <p class="text-terracotta text-sm font-medium mt-1">${inr(item.price)}</p>
+          <div class="flex items-center gap-3 mt-3">
+            <div class="flex items-center border border-charcoal/15 rounded-full">
+              <button class="qty-btn qty-minus w-7 h-7 flex items-center justify-center hover:bg-charcoal/5 rounded-full" aria-label="Decrease quantity" data-uid="${item.uid}">–</button>
+              <span class="w-7 text-center text-sm">${item.qty}</span>
+              <button class="qty-btn qty-plus w-7 h-7 flex items-center justify-center hover:bg-charcoal/5 rounded-full" aria-label="Increase quantity" data-uid="${item.uid}">+</button>
+            </div>
+            <button class="remove-item text-xs text-charcoal/40 hover:text-terracotta uppercase tracking-widest" data-uid="${item.uid}">Remove</button>
+          </div>
+        </div>
+        <span class="text-sm font-medium whitespace-nowrap">${inr(item.qty * item.price)}</span>
+      </div>
+    `).join("");
+
+    const subtotal = cartSubtotal();
+    const shipping = (subtotal >= FREE_SHIP_THRESHOLD || subtotal === 0) ? "Free" : inr(99);
+    const total = subtotal + ((subtotal >= FREE_SHIP_THRESHOLD || subtotal === 0) ? 0 : 99);
+
+    cartSubtotalEl.textContent = inr(subtotal);
+    document.getElementById("cartShipping").textContent = shipping;
+    cartTotalEl.textContent = inr(total);
+  }
+
+  function showToast(text) {
+    cartToastText.textContent = text;
+    cartToast.classList.remove("translate-y-24", "opacity-0");
+    clearTimeout(window.__toastTimer);
+    window.__toastTimer = setTimeout(() => {
+      cartToast.classList.add("translate-y-24", "opacity-0");
+    }, 2400);
+  }
+
+  document.addEventListener("click", (e) => {
+    const plusBtn = e.target.closest(".qty-plus");
+    if (plusBtn) {
+      const item = cart.find(i => i.uid === plusBtn.dataset.uid);
+      if (item) { item.qty++; renderCart(); }
+      return;
+    }
+    const minusBtn = e.target.closest(".qty-minus");
+    if (minusBtn) {
+      const item = cart.find(i => i.uid === minusBtn.dataset.uid);
+      if (item) {
+        item.qty--;
+        if (item.qty <= 0) cart = cart.filter(i => i.uid !== item.uid);
+        renderCart();
+      }
+      return;
+    }
+    const removeBtn = e.target.closest(".remove-item");
+    if (removeBtn) {
+      cart = cart.filter(i => i.uid !== removeBtn.dataset.uid);
+      renderCart();
+      return;
+    }
+  });
+
+  // =========================================================
+  // Cart drawer open/close
+  // =========================================================
+  const cartBtn      = document.getElementById("cartBtn");
+  const cartDrawer    = document.getElementById("cartDrawer");
+  const cartOverlay   = document.getElementById("cartOverlay");
+  const closeCartBtn  = document.getElementById("closeCart");
+
+  function openCartDrawer() {
+    cartDrawer.classList.remove("translate-x-full");
+    cartOverlay.classList.remove("opacity-0", "pointer-events-none");
+    document.body.classList.add("overflow-hidden");
+  }
+  function closeCartDrawer() {
+    cartDrawer.classList.add("translate-x-full");
+    cartOverlay.classList.add("opacity-0", "pointer-events-none");
+    document.body.classList.remove("overflow-hidden");
+  }
+  cartBtn.addEventListener("click", openCartDrawer);
+  closeCartBtn.addEventListener("click", closeCartDrawer);
+  cartOverlay.addEventListener("click", closeCartDrawer);
+
+  // =========================================================
+  // Checkout modal
+  // =========================================================
+  const checkoutOverlay = document.getElementById("checkoutOverlay");
+  const checkoutModal   = document.getElementById("checkoutModal");
+  const closeCheckoutBtn= document.getElementById("closeCheckout");
+  const checkoutBtn     = document.getElementById("checkoutBtn");
+  const shippingStep    = document.getElementById("shippingStep");
+  const paymentStep     = document.getElementById("paymentStep");
+  const checkoutStepLabel = document.getElementById("checkoutStepLabel");
+  const editShippingBtn = document.getElementById("editShipping");
+
+  let lastShipping = {};
+
+  function openCheckout() {
+    if (cart.length === 0) return;
+    closeCartDrawer();
+    checkoutOverlay.classList.remove("opacity-0", "pointer-events-none");
+    requestAnimationFrame(() => { checkoutModal.classList.remove("opacity-0", "scale-95"); });
+    document.body.classList.add("overflow-hidden");
+    goToShippingStep();
+  }
+  function closeCheckout() {
+    checkoutModal.classList.add("opacity-0", "scale-95");
+    checkoutOverlay.classList.add("opacity-0", "pointer-events-none");
+    document.body.classList.remove("overflow-hidden");
+  }
+  function goToShippingStep() {
+    shippingStep.classList.remove("hidden");
+    paymentStep.classList.add("hidden");
+    checkoutStepLabel.textContent = "Step 1 of 2 · Shipping Details";
+  }
+  function goToPaymentStep() {
+    shippingStep.classList.add("hidden");
+    paymentStep.classList.remove("hidden");
+    checkoutStepLabel.textContent = "Step 2 of 2 · Payment";
+
+    lastShipping = {
+      name: document.getElementById("fullName").value,
+      address: document.getElementById("address").value,
+      city: document.getElementById("city").value,
+      pincode: document.getElementById("pincode").value,
+      phone: document.getElementById("phone").value,
+    };
+    document.getElementById("reviewShipping").textContent = `${lastShipping.name}, ${lastShipping.address}, ${lastShipping.city} – ${lastShipping.pincode} · ${lastShipping.phone}`;
+
+    const subtotal = cartSubtotal();
+    const shipping = subtotal >= FREE_SHIP_THRESHOLD ? "Free" : inr(99);
+    const total = subtotal + (subtotal >= FREE_SHIP_THRESHOLD ? 0 : 99);
+    document.getElementById("paySubtotal").textContent = inr(subtotal);
+    document.getElementById("payShipping").textContent = shipping;
+    document.getElementById("payTotal").textContent = inr(total);
+  }
+
+  checkoutBtn.addEventListener("click", openCheckout);
+  closeCheckoutBtn.addEventListener("click", closeCheckout);
+  checkoutOverlay.addEventListener("click", (e) => { if (e.target === checkoutOverlay) closeCheckout(); });
+  editShippingBtn.addEventListener("click", goToShippingStep);
+
+  shippingStep.addEventListener("submit", (e) => {
+    e.preventDefault();
+    goToPaymentStep();
+  });
+
+  const cardFields = document.getElementById("cardFields");
+  document.querySelectorAll('input[name="payMethod"]').forEach(radio => {
+    radio.addEventListener("change", () => {
+      cardFields.classList.toggle("hidden", radio.value !== "Card" || !radio.checked);
+    });
+  });
+
+  // =========================================================
+  // Place order → success modal + WhatsApp handoff
+  // =========================================================
+  const successOverlay = document.getElementById("successOverlay");
+  const successModal   = document.getElementById("successModal");
+  const closeSuccessBtn= document.getElementById("closeSuccess");
+  const successOrderId = document.getElementById("successOrderId");
+  const whatsappOrderBtn = document.getElementById("whatsappOrderBtn");
+
+  document.getElementById("placeOrderBtn").addEventListener("click", () => {
+    const orderId = "AB-" + Math.floor(100000 + Math.random() * 900000);
+    successOrderId.textContent = "#" + orderId;
+
+    const payMethod = document.querySelector('input[name="payMethod"]:checked').value;
+    const subtotal = cartSubtotal();
+    const shippingCost = subtotal >= FREE_SHIP_THRESHOLD ? 0 : 99;
+    const total = subtotal + shippingCost;
+
+    // Build WhatsApp message
+    let msg = `*New Order — Art Bloom*\n`;
+    msg += `Order ID: ${orderId}\n\n`;
+    msg += `*Items:*\n`;
+    cart.forEach(item => {
+      msg += `• ${item.name} (Size: ${item.size}) x${item.qty} — ${inr(item.price * item.qty)}\n`;
+      if (item.note) msg += `   Note: ${item.note}\n`;
+    });
+    msg += `\nSubtotal: ${inr(subtotal)}\n`;
+    msg += `Shipping: ${shippingCost === 0 ? "Free" : inr(shippingCost)}\n`;
+    msg += `*Total: ${inr(total)}*\n\n`;
+    msg += `*Payment Method:* ${payMethod}\n\n`;
+    msg += `*Shipping To:*\n${lastShipping.name}\n${lastShipping.address}\n${lastShipping.city} – ${lastShipping.pincode}\nPhone: ${lastShipping.phone}\n\n`;
+    msg += `Thank you for supporting handmade art! 🌿`;
+
+    whatsappOrderBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+
+    closeCheckout();
+
+    // reset cart
+    cart = [];
+    renderCart();
+
+    // reset forms
+    shippingStep.reset();
+    document.getElementById("payUpi").checked = true;
+    cardFields.classList.add("hidden");
+
+    successOverlay.classList.remove("opacity-0", "pointer-events-none");
+    requestAnimationFrame(() => { successModal.classList.remove("opacity-0", "scale-95"); });
+    document.body.classList.add("overflow-hidden");
+  });
+
+  closeSuccessBtn.addEventListener("click", () => {
+    successModal.classList.add("opacity-0", "scale-95");
+    successOverlay.classList.add("opacity-0", "pointer-events-none");
+    document.body.classList.remove("overflow-hidden");
+  });
+  successOverlay.addEventListener("click", (e) => { if (e.target === successOverlay) closeSuccessBtn.click(); });
+
+  // Escape key closes any open overlay (product modal > checkout > cart > success priority)
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    if (!successOverlay.classList.contains("pointer-events-none")) { closeSuccessBtn.click(); return; }
+    if (!checkoutOverlay.classList.contains("pointer-events-none")) { closeCheckout(); return; }
+    if (!productOverlay.classList.contains("pointer-events-none")) { closeProductModal(); return; }
+    if (!cartOverlay.classList.contains("pointer-events-none")) { closeCartDrawer(); return; }
+  });
+
+  // =========================================================
+  // Mobile menu
+  // =========================================================
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  let menuOpen = false;
+  menuBtn.addEventListener("click", () => {
+    menuOpen = !menuOpen;
+    menuBtn.setAttribute("aria-expanded", String(menuOpen));
+    if (menuOpen) {
+      mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+      menuBtn.classList.add("is-open");
+    } else {
+      mobileMenu.style.maxHeight = "0px";
+      menuBtn.classList.remove("is-open");
+    }
+  });
+  document.querySelectorAll(".mobile-link").forEach(link => {
+    link.addEventListener("click", () => {
+      menuOpen = false;
+      mobileMenu.style.maxHeight = "0px";
+      menuBtn.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  const styleTag = document.createElement("style");
+  styleTag.textContent = `
+    #menuBtn.is-open .menu-bar:nth-child(1){ transform: translateY(6.5px) rotate(45deg); }
+    #menuBtn.is-open .menu-bar:nth-child(2){ opacity: 0; }
+    #menuBtn.is-open .menu-bar:nth-child(3){ transform: translateY(-6.5px) rotate(-45deg); width: 100%; }
+  `;
+  document.head.appendChild(styleTag);
+
+  // =========================================================
+  // Newsletter
+  // =========================================================
+  const newsletterForm = document.getElementById("newsletterForm");
+  const newsletterMsg = document.getElementById("newsletterMsg");
+  newsletterForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    newsletterMsg.classList.remove("hidden");
+    newsletterForm.reset();
+  });
+
+  // =========================================================
+  // Scroll reveal
+  // =========================================================
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in-view");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+
+  // Initial cart render
+  renderCart();
+</script>
+
+</body>
+</html>
